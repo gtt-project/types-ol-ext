@@ -1,0 +1,26 @@
+{
+  "tags": {
+    "allowUnknownTags": true
+  },
+  "opts": {
+    "template": "./node_modules/tsd-jsdoc/dist"
+  },
+  "source": {
+    "includePattern": ".+\\.js$",
+    "excludePattern": "(^|\\/|\\\\)_",
+    "exclude": [
+      "ol-ext/src/utils"
+    ]
+  },
+  "plugins": [
+    "./node_modules/jsdoc-export-default-interop/dist/index"
+  ],
+  "templates": {
+    "cleverLinks": false,
+    "monospaceLinks": false,
+    "default": {
+      "outputSourceFiles": false
+    },
+    "systemName": "ol-ext"
+  }
+}
