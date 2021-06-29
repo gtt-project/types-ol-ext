@@ -1,6 +1,6 @@
 {
-  "name": "@siedlerchr/types-ol-ext",
-  "version": "1.0.0",
+  "name": "@gtt-project/types-ol-ext",
+  "version": "1.0.1-1",
   "description": "Type definitions for ol-ext",
   "main": "",
   "types": "types.d.ts",
