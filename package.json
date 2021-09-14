@@ -1,6 +1,6 @@
 {
   "name": "@gtt-project/types-ol-ext",
-  "version": "1.2.0",
+  "version": "1.2.1-0",
   "description": "Type definitions for ol-ext",
   "main": "",
   "types": "index.d.ts",
