@@ -1,6 +1,6 @@
-import { FeatureAnimation, FeatureAnimationEvent } from './FeatureAnimation';
+import { FeatureAnimation, FeatureAnimationEvent, FeatureAnimationOptions } from './FeatureAnimation';
 
-export interface Options {
+export interface Options extends FeatureAnimationOptions {
     zoomOut?: boolean;
 }
 

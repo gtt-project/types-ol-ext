@@ -8,8 +8,44 @@ import VectorLayer from 'ol/layer/Vector';
 import { LineString, Point, Polygon } from 'ol/geom';
 import { Coordinate } from 'ol/coordinate';
 import 'ol-ext/render/AnimExtent';
-import featureAnimation from 'ol-ext/featureanimation/FeatureAnimation';
+import { FeatureAnimation } from 'ol-ext/featureanimation/FeatureAnimation';
 import { getKey } from 'ol/tilecoord';
+import Drop from 'ol-ext/featureanimation/Drop';
+import Slide from 'ol-ext/featureanimation/Slide';
+import Fade from 'ol-ext/featureanimation/Fade';
+import Zoom from 'ol-ext/featureanimation/Zoom';
+// import ZoomOut from 'ol-ext/featureanimation/ZoomOut';
+import Show from 'ol-ext/featureanimation/Show';
+import Teleport from 'ol-ext/featureanimation/Teleport';
+import Null from 'ol-ext/featureanimation/Null';
+import Bounce from 'ol-ext/featureanimation/Bounce';
+import Shake from 'ol-ext/featureanimation/Shake';
+type animationType = 'Drop' | 'Slide' | 'Fade' | 'Zoom' | /*'ZoomOut' |*/ 'Show' | 'Teleport'
+                      | 'Null' | 'Bounce' | 'Shake';
+function createFeatureAnimation(key: animationType, options: any): FeatureAnimation {
+  switch (key) {
+    case 'Drop':
+      return new Drop(options)
+    case 'Slide':
+      return new Slide(options)
+    case 'Fade':
+      return new Fade(options)
+    case 'Zoom':
+      return new Zoom(options)
+    // case 'ZoomOut':
+    //   return new ZoomOut(options)
+    case 'Show':
+      return new Show(options)
+    case 'Teleport':
+      return new Teleport(options)
+    case 'Null':
+      return new Null()
+    case 'Bounce':
+      return new Bounce(options)
+    case 'Shake':
+      return new Shake(options)
+  }
+}
 
 declare global {
   interface Window {
@@ -122,12 +158,12 @@ function addFeatureAt(p: Coordinate) {
 
   vector.getSource()?.addFeature(f);
   vector.animateFeature(f, [
-    new featureAnimation[$('#anim').val()] ({
+    createFeatureAnimation($('#anim').val() as animationType, {
       speed: Number($('#speed').val()),
       duration: Number(1000 -Number($('#speed').val()) * 300),
       side: $('#side').prop('checked'),
     }),
-    new featureAnimation[$('#anim2').val()]({
+    createFeatureAnimation($('#anim2').val() as animationType, {
       speed: Number($('#speed').val()),
       duration: Number(1000 - Number($('#speed').val()) * 300),
       horizontal: /Slide/.test($('#anim').text()),
@@ -166,7 +202,7 @@ map.on('singleclick', function (evt) {
     vector.getSource()?.removeFeature(f);
     // Show animation
     vector.animateFeature(f, [
-      new featureAnimation[$('#anim').val()]({
+      createFeatureAnimation($('#anim').val() as animationType, {
         speed: Number($('#speed').val()),
         duration: Number(1000 - Number($('#speed').val()) * 300),
         side: $('#side').prop('checked'),

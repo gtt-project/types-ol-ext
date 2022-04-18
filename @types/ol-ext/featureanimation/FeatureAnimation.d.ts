@@ -24,7 +24,7 @@ export interface FeatureAnimationEvent {
     coord: Coordinate
     style: StyleLike
 }
-export interface Options {
+export interface FeatureAnimationOptions {
     speed?: Number;
     duration?: number;
     revers?: boolean;
@@ -80,5 +80,5 @@ export class FeatureAnimation extends _OL_OBJECT {
     animate(e: FeatureAnimationEvent): boolean;
 }
 
-export const featureAnimation: { [key:string]: typeof FeatureAnimation}
-export default featureAnimation
+// export const featureAnimation: { [key:string]: typeof FeatureAnimation}
+// export default featureAnimation
